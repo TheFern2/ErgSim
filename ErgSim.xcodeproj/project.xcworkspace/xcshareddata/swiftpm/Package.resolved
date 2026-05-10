@@ -1,0 +1,15 @@
+{
+  "originHash" : "9570a739c2e37750c59936cae84431932dc94131e553ebf8231366867f0251cc",
+  "pins" : [
+    {
+      "identity" : "rowingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TheFern2/RowingKit",
+      "state" : {
+        "branch" : "main",
+        "revision" : "77bc1d32c9de582585b2bef65a759b253bbab7b7"
+      }
+    }
+  ],
+  "version" : 3
+}

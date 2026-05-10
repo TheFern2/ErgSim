@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		53A17B692FB0B6BA0074D9E5 /* RowingBLE in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B682FB0B6BA0074D9E5 /* RowingBLE */; };
+		53A17B6B2FB0B6BA0074D9E5 /* RowingProtocols in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B6A2FB0B6BA0074D9E5 /* RowingProtocols */; };
+		53A17B7C2FB0B8670074D9E5 /* RowingBLE in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B7B2FB0B8670074D9E5 /* RowingBLE */; };
+		53A17B7E2FB0B8670074D9E5 /* RowingProtocols in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B7D2FB0B8670074D9E5 /* RowingProtocols */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		53A17B472FB004E50074D9E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -29,9 +36,22 @@
 		53A17B502FB004E50074D9E5 /* ErgSimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErgSimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		53A17B852FB0BA150074D9E5 /* Exceptions for "ErgSim" folder in "ErgSim" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 53A17B362FB004E30074D9E5 /* ErgSim */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		53A17B392FB004E30074D9E5 /* ErgSim */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				53A17B852FB0BA150074D9E5 /* Exceptions for "ErgSim" folder in "ErgSim" target */,
+			);
 			path = ErgSim;
 			sourceTree = "<group>";
 		};
@@ -52,6 +72,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53A17B6B2FB0B6BA0074D9E5 /* RowingProtocols in Frameworks */,
+				53A17B7C2FB0B8670074D9E5 /* RowingBLE in Frameworks */,
+				53A17B7E2FB0B8670074D9E5 /* RowingProtocols in Frameworks */,
+				53A17B692FB0B6BA0074D9E5 /* RowingBLE in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +136,10 @@
 			);
 			name = ErgSim;
 			packageProductDependencies = (
+				53A17B682FB0B6BA0074D9E5 /* RowingBLE */,
+				53A17B6A2FB0B6BA0074D9E5 /* RowingProtocols */,
+				53A17B7B2FB0B8670074D9E5 /* RowingBLE */,
+				53A17B7D2FB0B8670074D9E5 /* RowingProtocols */,
 			);
 			productName = ErgSim;
 			productReference = 53A17B372FB004E30074D9E5 /* ErgSim.app */;
@@ -195,6 +223,9 @@
 			);
 			mainGroup = 53A17B2E2FB004E30074D9E5;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				53A17B7A2FB0B8670074D9E5 /* XCRemoteSwiftPackageReference "RowingKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 53A17B382FB004E30074D9E5 /* Products */;
 			projectDirPath = "";
@@ -395,9 +426,20 @@
 				DEVELOPMENT_TEAM = B5F7F95KZ7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ErgSim/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -439,9 +481,20 @@
 				DEVELOPMENT_TEAM = B5F7F95KZ7;
 				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
 				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ErgSim/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -615,6 +668,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		53A17B7A2FB0B8670074D9E5 /* XCRemoteSwiftPackageReference "RowingKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/TheFern2/RowingKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		53A17B682FB0B6BA0074D9E5 /* RowingBLE */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RowingBLE;
+		};
+		53A17B6A2FB0B6BA0074D9E5 /* RowingProtocols */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = RowingProtocols;
+		};
+		53A17B7B2FB0B8670074D9E5 /* RowingBLE */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53A17B7A2FB0B8670074D9E5 /* XCRemoteSwiftPackageReference "RowingKit" */;
+			productName = RowingBLE;
+		};
+		53A17B7D2FB0B8670074D9E5 /* RowingProtocols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53A17B7A2FB0B8670074D9E5 /* XCRemoteSwiftPackageReference "RowingKit" */;
+			productName = RowingProtocols;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 53A17B2F2FB004E30074D9E5 /* Project object */;
 }
