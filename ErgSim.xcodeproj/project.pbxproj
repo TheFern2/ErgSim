@@ -675,7 +675,7 @@
 			repositoryURL = "https://github.com/TheFern2/RowingKit";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.1.0;
+				minimumVersion = 0.2.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
