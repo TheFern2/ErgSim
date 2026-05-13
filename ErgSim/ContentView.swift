@@ -153,6 +153,9 @@ struct ContentView: View {
                 dataRow("Speed", value: String(format: "%.1f m/s", engine.currentSpeed))
                 dataRow("Drive Time", value: String(format: "%.2fs", engine.driveTime))
                 dataRow("Recovery", value: String(format: "%.2fs", engine.recoveryTime))
+                dataRow("Calories", value: "\(engine.latestSnapshot?.calories ?? 0) kcal")
+                dataRow("Cal/hr", value: "\(engine.latestSnapshot?.caloriesPerHour ?? 0) kcal/hr")
+                dataRow("Cal/min", value: "\(engine.latestSnapshot?.caloriesPerMinute ?? 0) kcal/min")
 
                 Divider()
 

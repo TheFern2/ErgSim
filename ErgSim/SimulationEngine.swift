@@ -81,6 +81,10 @@ final class SimulationEngine {
     }
 
     private func buildSnapshot() {
+        let calPerHour = 300.0 + (4.0 * Double(currentPower) / 1.1639)
+        let totalCal = calPerHour * elapsedTime / 3600.0
+        let calPerMinute = calPerHour / 60.0
+
         let snapshot = RowingSnapshot(
             elapsedTime: elapsedTime,
             distance: distance,
@@ -89,6 +93,9 @@ final class SimulationEngine {
             pace: currentPace,
             speed: currentSpeed,
             power: currentPower,
+            calories: Int(totalCal),
+            caloriesPerHour: Int(calPerHour),
+            caloriesPerMinute: Int(calPerMinute),
             driveTime: driveTime,
             recoveryTime: recoveryTime,
             workoutState: .rowing,
