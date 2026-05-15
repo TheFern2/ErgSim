@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		539B93652FB767A5009B3083 /* RowingBLE in Frameworks */ = {isa = PBXBuildFile; productRef = 539B93642FB767A5009B3083 /* RowingBLE */; };
+		539B93672FB767A5009B3083 /* RowingProtocols in Frameworks */ = {isa = PBXBuildFile; productRef = 539B93662FB767A5009B3083 /* RowingProtocols */; };
 		53A17B692FB0B6BA0074D9E5 /* RowingBLE in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B682FB0B6BA0074D9E5 /* RowingBLE */; };
 		53A17B6B2FB0B6BA0074D9E5 /* RowingProtocols in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B6A2FB0B6BA0074D9E5 /* RowingProtocols */; };
 		53A17B7C2FB0B8670074D9E5 /* RowingBLE in Frameworks */ = {isa = PBXBuildFile; productRef = 53A17B7B2FB0B8670074D9E5 /* RowingBLE */; };
@@ -14,6 +16,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		539B93472FB7665B009B3083 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53A17B2F2FB004E30074D9E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 539B93372FB76659009B3083;
+			remoteInfo = HRMSim;
+		};
+		539B93512FB7665B009B3083 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 53A17B2F2FB004E30074D9E5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 539B93372FB76659009B3083;
+			remoteInfo = HRMSim;
+		};
 		53A17B472FB004E50074D9E5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 53A17B2F2FB004E30074D9E5 /* Project object */;
@@ -31,6 +47,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		539B93382FB76659009B3083 /* HRMSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HRMSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		539B93462FB7665B009B3083 /* HRMSimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HRMSimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		539B93502FB7665B009B3083 /* HRMSimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HRMSimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53A17B372FB004E30074D9E5 /* ErgSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ErgSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53A17B462FB004E50074D9E5 /* ErgSimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErgSimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		53A17B502FB004E50074D9E5 /* ErgSimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ErgSimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +66,21 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		539B93392FB76659009B3083 /* HRMSim */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HRMSim;
+			sourceTree = "<group>";
+		};
+		539B93492FB7665B009B3083 /* HRMSimTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HRMSimTests;
+			sourceTree = "<group>";
+		};
+		539B93532FB7665B009B3083 /* HRMSimUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HRMSimUITests;
+			sourceTree = "<group>";
+		};
 		53A17B392FB004E30074D9E5 /* ErgSim */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -68,6 +102,29 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		539B93352FB76659009B3083 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539B93672FB767A5009B3083 /* RowingProtocols in Frameworks */,
+				539B93652FB767A5009B3083 /* RowingBLE in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		539B93432FB7665B009B3083 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		539B934D2FB7665B009B3083 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53A17B342FB004E30074D9E5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -96,12 +153,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		539B93632FB767A5009B3083 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		53A17B2E2FB004E30074D9E5 = {
 			isa = PBXGroup;
 			children = (
 				53A17B392FB004E30074D9E5 /* ErgSim */,
 				53A17B492FB004E50074D9E5 /* ErgSimTests */,
 				53A17B532FB004E50074D9E5 /* ErgSimUITests */,
+				539B93392FB76659009B3083 /* HRMSim */,
+				539B93492FB7665B009B3083 /* HRMSimTests */,
+				539B93532FB7665B009B3083 /* HRMSimUITests */,
+				539B93632FB767A5009B3083 /* Frameworks */,
 				53A17B382FB004E30074D9E5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -112,6 +180,9 @@
 				53A17B372FB004E30074D9E5 /* ErgSim.app */,
 				53A17B462FB004E50074D9E5 /* ErgSimTests.xctest */,
 				53A17B502FB004E50074D9E5 /* ErgSimUITests.xctest */,
+				539B93382FB76659009B3083 /* HRMSim.app */,
+				539B93462FB7665B009B3083 /* HRMSimTests.xctest */,
+				539B93502FB7665B009B3083 /* HRMSimUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -119,6 +190,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		539B93372FB76659009B3083 /* HRMSim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 539B93582FB7665B009B3083 /* Build configuration list for PBXNativeTarget "HRMSim" */;
+			buildPhases = (
+				539B93342FB76659009B3083 /* Sources */,
+				539B93352FB76659009B3083 /* Frameworks */,
+				539B93362FB76659009B3083 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				539B93392FB76659009B3083 /* HRMSim */,
+			);
+			name = HRMSim;
+			packageProductDependencies = (
+				539B93642FB767A5009B3083 /* RowingBLE */,
+				539B93662FB767A5009B3083 /* RowingProtocols */,
+			);
+			productName = HRMSim;
+			productReference = 539B93382FB76659009B3083 /* HRMSim.app */;
+			productType = "com.apple.product-type.application";
+		};
+		539B93452FB7665B009B3083 /* HRMSimTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 539B935B2FB7665B009B3083 /* Build configuration list for PBXNativeTarget "HRMSimTests" */;
+			buildPhases = (
+				539B93422FB7665B009B3083 /* Sources */,
+				539B93432FB7665B009B3083 /* Frameworks */,
+				539B93442FB7665B009B3083 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				539B93482FB7665B009B3083 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				539B93492FB7665B009B3083 /* HRMSimTests */,
+			);
+			name = HRMSimTests;
+			packageProductDependencies = (
+			);
+			productName = HRMSimTests;
+			productReference = 539B93462FB7665B009B3083 /* HRMSimTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		539B934F2FB7665B009B3083 /* HRMSimUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 539B935E2FB7665B009B3083 /* Build configuration list for PBXNativeTarget "HRMSimUITests" */;
+			buildPhases = (
+				539B934C2FB7665B009B3083 /* Sources */,
+				539B934D2FB7665B009B3083 /* Frameworks */,
+				539B934E2FB7665B009B3083 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				539B93522FB7665B009B3083 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				539B93532FB7665B009B3083 /* HRMSimUITests */,
+			);
+			name = HRMSimUITests;
+			packageProductDependencies = (
+			);
+			productName = HRMSimUITests;
+			productReference = 539B93502FB7665B009B3083 /* HRMSimUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		53A17B362FB004E30074D9E5 /* ErgSim */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 53A17B5A2FB004E50074D9E5 /* Build configuration list for PBXNativeTarget "ErgSim" */;
@@ -198,9 +339,20 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 2640;
+				LastSwiftUpdateCheck = 2650;
 				LastUpgradeCheck = 2640;
 				TargetAttributes = {
+					539B93372FB76659009B3083 = {
+						CreatedOnToolsVersion = 26.5;
+					};
+					539B93452FB7665B009B3083 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 539B93372FB76659009B3083;
+					};
+					539B934F2FB7665B009B3083 = {
+						CreatedOnToolsVersion = 26.5;
+						TestTargetID = 539B93372FB76659009B3083;
+					};
 					53A17B362FB004E30074D9E5 = {
 						CreatedOnToolsVersion = 26.4.1;
 					};
@@ -234,11 +386,35 @@
 				53A17B362FB004E30074D9E5 /* ErgSim */,
 				53A17B452FB004E50074D9E5 /* ErgSimTests */,
 				53A17B4F2FB004E50074D9E5 /* ErgSimUITests */,
+				539B93372FB76659009B3083 /* HRMSim */,
+				539B93452FB7665B009B3083 /* HRMSimTests */,
+				539B934F2FB7665B009B3083 /* HRMSimUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		539B93362FB76659009B3083 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		539B93442FB7665B009B3083 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		539B934E2FB7665B009B3083 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53A17B352FB004E30074D9E5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -263,6 +439,27 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		539B93342FB76659009B3083 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		539B93422FB7665B009B3083 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		539B934C2FB7665B009B3083 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		53A17B332FB004E30074D9E5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -287,6 +484,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		539B93482FB7665B009B3083 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 539B93372FB76659009B3083 /* HRMSim */;
+			targetProxy = 539B93472FB7665B009B3083 /* PBXContainerItemProxy */;
+		};
+		539B93522FB7665B009B3083 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 539B93372FB76659009B3083 /* HRMSim */;
+			targetProxy = 539B93512FB7665B009B3083 /* PBXContainerItemProxy */;
+		};
 		53A17B482FB004E50074D9E5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 53A17B362FB004E30074D9E5 /* ErgSim */;
@@ -300,6 +507,182 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		539B93592FB7665B009B3083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5F7F95KZ7;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "ErgSim uses Bluetooth to simulate a rowing machine";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.flippingbits.HRMSim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		539B935A2FB7665B009B3083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5F7F95KZ7;
+				ENABLE_APP_SANDBOX = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_INCOMING_NETWORK_CONNECTIONS = NO;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_RESOURCE_ACCESS_AUDIO_INPUT = NO;
+				ENABLE_RESOURCE_ACCESS_BLUETOOTH = YES;
+				ENABLE_RESOURCE_ACCESS_CALENDARS = NO;
+				ENABLE_RESOURCE_ACCESS_CAMERA = NO;
+				ENABLE_RESOURCE_ACCESS_CONTACTS = NO;
+				ENABLE_RESOURCE_ACCESS_LOCATION = NO;
+				ENABLE_RESOURCE_ACCESS_PRINTING = NO;
+				ENABLE_RESOURCE_ACCESS_USB = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "ErgSim uses Bluetooth to simulate a rowing machine";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.flippingbits.HRMSim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		539B935C2FB7665B009B3083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5F7F95KZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.flippingbits.HRMSimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HRMSim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HRMSim";
+			};
+			name = Debug;
+		};
+		539B935D2FB7665B009B3083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5F7F95KZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.flippingbits.HRMSimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HRMSim.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HRMSim";
+			};
+			name = Release;
+		};
+		539B935F2FB7665B009B3083 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5F7F95KZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.flippingbits.HRMSimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = HRMSim;
+			};
+			name = Debug;
+		};
+		539B93602FB7665B009B3083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B5F7F95KZ7;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = co.flippingbits.HRMSimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = HRMSim;
+			};
+			name = Release;
+		};
 		53A17B582FB004E50074D9E5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -631,6 +1014,33 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		539B93582FB7665B009B3083 /* Build configuration list for PBXNativeTarget "HRMSim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				539B93592FB7665B009B3083 /* Debug */,
+				539B935A2FB7665B009B3083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		539B935B2FB7665B009B3083 /* Build configuration list for PBXNativeTarget "HRMSimTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				539B935C2FB7665B009B3083 /* Debug */,
+				539B935D2FB7665B009B3083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		539B935E2FB7665B009B3083 /* Build configuration list for PBXNativeTarget "HRMSimUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				539B935F2FB7665B009B3083 /* Debug */,
+				539B93602FB7665B009B3083 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		53A17B322FB004E30074D9E5 /* Build configuration list for PBXProject "ErgSim" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -675,12 +1085,22 @@
 			repositoryURL = "https://github.com/TheFern2/RowingKit";
 			requirement = {
 				kind = upToNextMinorVersion;
-				minimumVersion = 0.2.0;
+				minimumVersion = 0.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		539B93642FB767A5009B3083 /* RowingBLE */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53A17B7A2FB0B8670074D9E5 /* XCRemoteSwiftPackageReference "RowingKit" */;
+			productName = RowingBLE;
+		};
+		539B93662FB767A5009B3083 /* RowingProtocols */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 53A17B7A2FB0B8670074D9E5 /* XCRemoteSwiftPackageReference "RowingKit" */;
+			productName = RowingProtocols;
+		};
 		53A17B682FB0B6BA0074D9E5 /* RowingBLE */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = RowingBLE;

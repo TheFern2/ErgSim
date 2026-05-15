@@ -7,8 +7,10 @@ struct ContentView: View {
     @State private var selectedProtocol: RowingProtocolType = .concept2
     @State private var peripheral = RowingPeripheral(protocolType: .concept2)
     @State private var engine = SimulationEngine()
-    @State private var isRunning = false
+    private enum SimState { case idle, advertising, running }
+    @State private var simState: SimState = .idle
     @State private var selectedProfileID: String = SimulationProfile.default.id
+    @State private var includeHRInErg = true
     @State private var showConsole = false
     @State private var logEntries: [LogEntry] = []
     @State private var decodedFields: [DecodedField] = []
@@ -20,7 +22,7 @@ struct ContentView: View {
     @State private var paceMin: Int = Int(SimulationProfile.default.paceMin)
     @State private var paceMax: Int = Int(SimulationProfile.default.paceMax)
 
-    private var isControlsDisabled: Bool { isRunning }
+    private var isControlsDisabled: Bool { simState != .idle }
 
     var body: some View {
         VStack(spacing: 16) {
@@ -41,7 +43,13 @@ struct ContentView: View {
             if showConsole {
                 captureEncodedData(snapshot)
             }
-            peripheral.publish(snapshot: snapshot)
+            if includeHRInErg {
+                peripheral.publish(snapshot: snapshot)
+            } else {
+                var stripped = snapshot
+                stripped.heartRate = nil
+                peripheral.publish(snapshot: stripped)
+            }
         }
     }
 
@@ -87,6 +95,11 @@ struct ContentView: View {
                 Text("Pace in seconds per 500m")
                     .font(.caption)
                     .foregroundStyle(.secondary)
+
+                Divider()
+
+                Toggle("Include HR in erg data", isOn: $includeHRInErg)
+                    .disabled(isControlsDisabled)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -150,6 +163,7 @@ struct ContentView: View {
                 dataRow("Power", value: "\(engine.currentPower) W")
                 dataRow("Pace", value: formatPace(engine.currentPace))
                 dataRow("Strokes", value: "\(engine.strokeCount)")
+                dataRow("Heart Rate", value: "\(engine.currentHeartRate) bpm")
                 dataRow("Speed", value: String(format: "%.1f m/s", engine.currentSpeed))
                 dataRow("Drive Time", value: String(format: "%.2fs", engine.driveTime))
                 dataRow("Recovery", value: String(format: "%.2fs", engine.recoveryTime))
@@ -243,30 +257,49 @@ struct ContentView: View {
 
             Spacer()
 
-            Button(isRunning ? "Stop" : "Start") {
-                if isRunning { stop() } else { start() }
+            switch simState {
+            case .idle:
+                Button("Broadcast") { startAdvertising() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.blue)
+            case .advertising:
+                Button("Stop") { stop() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.red)
+                Button("Start Workout") { startWorkout() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.green)
+            case .running:
+                Button("Stop") { stop() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.red)
             }
-            .buttonStyle(.borderedProminent)
-            .controlSize(.large)
-            .tint(isRunning ? .red : .green)
         }
     }
 
     // MARK: - Actions
 
-    private func start() {
+    private func startAdvertising() {
         syncProfileToEngine()
         peripheral = RowingPeripheral(protocolType: selectedProtocol)
         let name = selectedProtocol == .concept2 ? "ErgSim C2" : "ErgSim FTMS"
         peripheral.startAdvertising(name: name)
+        simState = .advertising
+    }
+
+    private func startWorkout() {
         engine.start()
-        isRunning = true
+        simState = .running
     }
 
     private func stop() {
         engine.stop()
         peripheral.stopAdvertising()
-        isRunning = false
+        simState = .idle
     }
 
     private func applyProfile(_ profile: SimulationProfile) {
@@ -279,12 +312,17 @@ struct ContentView: View {
     }
 
     private func syncProfileToEngine() {
+        let baseProfile = SimulationProfile.presets.first { $0.id == selectedProfileID }
         engine.profile = SimulationProfile(
             id: "active",
             name: "Active",
             spmMin: spmMin, spmMax: Swift.max(spmMin, spmMax),
             powerMin: powerMin, powerMax: Swift.max(powerMin, powerMax),
-            paceMin: TimeInterval(paceMin), paceMax: TimeInterval(Swift.max(paceMin, paceMax))
+            paceMin: TimeInterval(paceMin), paceMax: TimeInterval(Swift.max(paceMin, paceMax)),
+            hrRestingMin: baseProfile?.hrRestingMin ?? 62,
+            hrRestingMax: baseProfile?.hrRestingMax ?? 72,
+            hrActiveMin: baseProfile?.hrActiveMin ?? 140,
+            hrActiveMax: baseProfile?.hrActiveMax ?? 160
         )
     }
 

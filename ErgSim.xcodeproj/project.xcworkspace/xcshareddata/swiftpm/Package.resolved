@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/TheFern2/RowingKit",
       "state" : {
-        "revision" : "1aa36c40a5f20a7813386cea165dcbed472e04a7",
-        "version" : "0.2.0"
+        "revision" : "7c4dde1a01c4549b32040f08e456c8dddd582a4c",
+        "version" : "0.3.0"
       }
     }
   ],

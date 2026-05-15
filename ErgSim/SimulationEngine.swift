@@ -12,6 +12,7 @@ final class SimulationEngine {
     private(set) var currentSpeed: Double = 0
     private(set) var driveTime: TimeInterval = 0
     private(set) var recoveryTime: TimeInterval = 0
+    private(set) var currentHeartRate: Int = 0
     private(set) var latestSnapshot: RowingSnapshot?
 
     var profile: SimulationProfile = .default
@@ -45,6 +46,7 @@ final class SimulationEngine {
         currentSpeed = 0
         driveTime = 0
         recoveryTime = 0
+        currentHeartRate = Int.random(in: profile.hrRestingMin...profile.hrRestingMax)
         timeSinceLastStroke = 0
         latestSnapshot = nil
     }
@@ -60,6 +62,7 @@ final class SimulationEngine {
             completeStroke()
         }
 
+        updateHeartRate()
         buildSnapshot()
     }
 
@@ -80,6 +83,23 @@ final class SimulationEngine {
         recoveryTime = strokeInterval * 0.6
     }
 
+    private func updateHeartRate() {
+        let powerRange = Double(profile.powerMax - profile.powerMin)
+        let intensity = powerRange > 0
+            ? Double(currentPower - profile.powerMin) / powerRange
+            : 0.5
+        let clampedIntensity = min(max(intensity, 0), 1)
+
+        let restingMid = Double(profile.hrRestingMin + profile.hrRestingMax) / 2.0
+        let activeMid = Double(profile.hrActiveMin + profile.hrActiveMax) / 2.0
+        let targetHR = restingMid + (activeMid - restingMid) * clampedIntensity
+
+        let maxDelta = 3.0 * tickInterval
+        let delta = targetHR - Double(currentHeartRate)
+        let clamped = min(max(delta, -maxDelta), maxDelta)
+        currentHeartRate = Int((Double(currentHeartRate) + clamped).rounded())
+    }
+
     private func buildSnapshot() {
         let calPerHour = 300.0 + (4.0 * Double(currentPower) / 1.1639)
         let totalCal = calPerHour * elapsedTime / 3600.0
@@ -93,6 +113,7 @@ final class SimulationEngine {
             pace: currentPace,
             speed: currentSpeed,
             power: currentPower,
+            heartRate: currentHeartRate,
             calories: Int(totalCal),
             caloriesPerHour: Int(calPerHour),
             caloriesPerMinute: Int(calPerMinute),
