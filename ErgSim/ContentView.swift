@@ -1,17 +1,24 @@
 import SwiftUI
+import SwiftData
 import RowingBLE
 import RowingProtocols
 import CoreBluetooth
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \IntervalConfig.createdAt) private var savedConfigs: [IntervalConfig]
+
     @State private var selectedProtocol: RowingProtocolType = .concept2
     @State private var peripheral = RowingPeripheral(protocolType: .concept2)
     @State private var engine = SimulationEngine()
-    private enum SimState { case idle, advertising, running }
+    @State private var intervalCoordinator = IntervalCoordinator()
+    private enum SimState { case idle, advertising, running, paused }
     @State private var simState: SimState = .idle
     @State private var selectedProfileID: String = SimulationProfile.default.id
+    @State private var selectedIntervalConfigID: PersistentIdentifier?
     @State private var includeHRInErg = true
     @State private var showConsole = false
+    @State private var showIntervalEditor = false
     @State private var logEntries: [LogEntry] = []
     @State private var decodedFields: [DecodedField] = []
 
@@ -23,6 +30,11 @@ struct ContentView: View {
     @State private var paceMax: Int = Int(SimulationProfile.default.paceMax)
 
     private var isControlsDisabled: Bool { simState != .idle }
+
+    private var selectedIntervalConfig: IntervalConfig? {
+        guard let id = selectedIntervalConfigID else { return nil }
+        return savedConfigs.first { $0.persistentModelID == id }
+    }
 
     var body: some View {
         VStack(spacing: 16) {
@@ -40,6 +52,18 @@ struct ContentView: View {
         .frame(minWidth: 700, minHeight: 500)
         .onChange(of: engine.latestSnapshot) { _, snapshot in
             guard let snapshot else { return }
+
+            if intervalCoordinator.isActive {
+                intervalCoordinator.tick(tickInterval: 0.25)
+                engine.isRestPhase = (intervalCoordinator.currentPhase == .rest)
+                if intervalCoordinator.currentPhase == .completed {
+                    pauseWorkout()
+                    return
+                }
+            }
+
+            guard intervalCoordinator.shouldPublishBLE else { return }
+
             if showConsole {
                 captureEncodedData(snapshot)
             }
@@ -51,6 +75,9 @@ struct ContentView: View {
                 peripheral.publish(snapshot: stripped)
             }
         }
+        .sheet(isPresented: $showIntervalEditor) {
+            IntervalEditorView()
+        }
     }
 
     // MARK: - Left Column
@@ -58,9 +85,29 @@ struct ContentView: View {
     private var leftColumn: some View {
         VStack(spacing: 16) {
             controlsSection
+            if intervalCoordinator.isActive {
+                intervalProgressSection
+            }
             statusSection
         }
         .frame(width: 300)
+    }
+
+    private var intervalProgressSection: some View {
+        GroupBox("Interval Progress") {
+            VStack(alignment: .leading, spacing: 6) {
+                statusRow("Step", value: "\(intervalCoordinator.currentStepIndex + 1) of \(intervalCoordinator.totalSteps)")
+                statusRow("Phase", value: intervalCoordinator.currentPhase == .work ? "Work" : "Rest",
+                          color: intervalCoordinator.currentPhase == .work ? .green : .orange)
+                statusRow("Remaining", value: formatTime(intervalCoordinator.phaseTimeRemaining))
+                statusRow("Repeat", value: "\(intervalCoordinator.currentRepeat + 1) of \(intervalCoordinator.currentStepRepeatCount)")
+                if let config = selectedIntervalConfig,
+                   config.sortedSteps.contains(where: { $0.shouldLoop }) {
+                    statusRow("Mode", value: "Looping")
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
     }
 
     private var controlsSection: some View {
@@ -100,6 +147,23 @@ struct ContentView: View {
 
                 Toggle("Include HR in erg data", isOn: $includeHRInErg)
                     .disabled(isControlsDisabled)
+
+                Divider()
+
+                HStack {
+                    Picker("Interval", selection: $selectedIntervalConfigID) {
+                        Text("Free Run").tag(nil as PersistentIdentifier?)
+                        ForEach(savedConfigs) { config in
+                            Text(config.name).tag(config.persistentModelID as PersistentIdentifier?)
+                        }
+                    }
+                    .disabled(isControlsDisabled)
+
+                    Button("Edit") { showIntervalEditor = true }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                        .disabled(isControlsDisabled)
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
@@ -273,6 +337,19 @@ struct ContentView: View {
                     .controlSize(.large)
                     .tint(.green)
             case .running:
+                Button("Pause") { pauseWorkout() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.orange)
+                Button("Stop") { stop() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.red)
+            case .paused:
+                Button("Resume") { resumeWorkout() }
+                    .buttonStyle(.borderedProminent)
+                    .controlSize(.large)
+                    .tint(.green)
                 Button("Stop") { stop() }
                     .buttonStyle(.borderedProminent)
                     .controlSize(.large)
@@ -292,12 +369,28 @@ struct ContentView: View {
     }
 
     private func startWorkout() {
+        syncProfileToEngine()
+        if let config = selectedIntervalConfig {
+            intervalCoordinator.start(with: config)
+        }
         engine.start()
+        simState = .running
+    }
+
+    private func pauseWorkout() {
+        engine.pause()
+        simState = .paused
+    }
+
+    private func resumeWorkout() {
+        engine.resume()
         simState = .running
     }
 
     private func stop() {
         engine.stop()
+        engine.isRestPhase = false
+        intervalCoordinator.stop()
         peripheral.stopAdvertising()
         simState = .idle
     }

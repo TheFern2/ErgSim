@@ -12,7 +12,8 @@ import SwiftData
 struct ErgSimApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            Item.self,
+            IntervalConfig.self,
+            IntervalStep.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

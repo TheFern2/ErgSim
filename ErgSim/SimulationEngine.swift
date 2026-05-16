@@ -15,6 +15,8 @@ final class SimulationEngine {
     private(set) var currentHeartRate: Int = 0
     private(set) var latestSnapshot: RowingSnapshot?
 
+    private(set) var isPaused: Bool = false
+    var isRestPhase: Bool = false
     var profile: SimulationProfile = .default
 
     private var tickInterval: TimeInterval = 0.25
@@ -33,6 +35,21 @@ final class SimulationEngine {
     func stop() {
         timer?.invalidate()
         timer = nil
+        isPaused = false
+    }
+
+    func pause() {
+        timer?.invalidate()
+        timer = nil
+        isPaused = true
+    }
+
+    func resume() {
+        guard isPaused else { return }
+        isPaused = false
+        timer = Timer.scheduledTimer(withTimeInterval: tickInterval, repeats: true) { [weak self] _ in
+            self?.tick()
+        }
     }
 
     func reset() {
@@ -53,16 +70,26 @@ final class SimulationEngine {
 
     private func tick() {
         elapsedTime += tickInterval
-        let metersPerSecond = currentPace > 0 ? 500.0 / currentPace : 0
-        distance += metersPerSecond * tickInterval
-        currentSpeed = metersPerSecond
 
-        timeSinceLastStroke += tickInterval
-        if timeSinceLastStroke >= strokeInterval {
-            completeStroke()
+        if isRestPhase {
+            currentSPM = 0
+            currentPower = 0
+            currentPace = 0
+            currentSpeed = 0
+            updateHeartRateTowardResting()
+        } else {
+            let metersPerSecond = currentPace > 0 ? 500.0 / currentPace : 0
+            distance += metersPerSecond * tickInterval
+            currentSpeed = metersPerSecond
+
+            timeSinceLastStroke += tickInterval
+            if timeSinceLastStroke >= strokeInterval {
+                completeStroke()
+            }
+
+            updateHeartRate()
         }
 
-        updateHeartRate()
         buildSnapshot()
     }
 
@@ -81,6 +108,14 @@ final class SimulationEngine {
         // ~40% drive, ~60% recovery
         driveTime = strokeInterval * 0.4
         recoveryTime = strokeInterval * 0.6
+    }
+
+    private func updateHeartRateTowardResting() {
+        let restingMid = Double(profile.hrRestingMin + profile.hrRestingMax) / 2.0
+        let maxDelta = 2.0 * tickInterval
+        let delta = restingMid - Double(currentHeartRate)
+        let clamped = min(max(delta, -maxDelta), maxDelta)
+        currentHeartRate = Int((Double(currentHeartRate) + clamped).rounded())
     }
 
     private func updateHeartRate() {
